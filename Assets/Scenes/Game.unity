@@ -880,7 +880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f94ac6a4903cd7439d56c8973fa05e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
+  speed: 15
 --- !u!1 &1248239830
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,6 +1622,14 @@ PrefabInstance:
     - target: {fileID: 4979079981939161477, guid: f9fb2e2ff45fb9949b09771fce103d99, type: 3}
       propertyPath: m_Controller
       value: 
+      objectReference: {fileID: 9100000, guid: 8bd50fa7f84445f499085af2faf790c8, type: 2}
+    - target: {fileID: 4979079981939161477, guid: f9fb2e2ff45fb9949b09771fce103d99, type: 3}
+      propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979079981939161477, guid: f9fb2e2ff45fb9949b09771fce103d99, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

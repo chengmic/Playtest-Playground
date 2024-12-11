@@ -10,11 +10,14 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     float xInput;
     float yInput;
+    Vector3 moveDirection;
+    private Animator animator;
 
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     void Start()
@@ -33,9 +36,30 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        // get player input
         xInput = Input.GetAxis("Horizontal");
         yInput = Input.GetAxis("Vertical");
 
-        transform.Translate(xInput * speed, 0, yInput * speed);
+        // rotate player if there's input
+        moveDirection = new Vector3(xInput, 0, yInput);
+        if (moveDirection.magnitude > 0.1f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+        }
+
+        // move players
+        Vector3 movement = new Vector3(xInput, 0, yInput) * speed * Time.deltaTime;
+        rb.MovePosition(transform.position + movement);
+
+        // animation
+        if (moveDirection.magnitude == 0)   //no movement
+        {
+            animator.SetFloat("speed", 0);
+        }
+        else    // movement
+        { 
+            animator.SetFloat("speed", 1);
+        }
     }
 }
